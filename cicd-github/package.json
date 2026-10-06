@@ -1,0 +1,9 @@
+{
+  "name": "cicd-demo",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "node app.js",
+    "test": "node test.js",
+    "build": "node -e \"require('fs').mkdirSync('dist',{recursive:true});require('fs').copyFileSync('app.js','dist/app.js')\""
+  }
+}
