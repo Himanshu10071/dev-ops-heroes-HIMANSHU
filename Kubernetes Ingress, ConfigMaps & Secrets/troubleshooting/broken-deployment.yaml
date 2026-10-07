@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: broken-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: broken
+  template:
+    metadata:
+      labels:
+        app: broken
+    spec:
+      containers:
+      - name: busybox
+        image: busybox
+        command: [ "/bin/sh", "-c", "sleep 3600" ]
+        env:
+        - name: MISSING_ENV
+          valueFrom:
+            configMapKeyRef:
+              name: non-existent-configmap
+              key: some-key
